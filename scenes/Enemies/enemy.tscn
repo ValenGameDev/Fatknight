@@ -1,0 +1,78 @@
+[gd_scene format=3 uid="uid://byrc04obw22r4"]
+
+[ext_resource type="Script" uid="uid://c7gnhtlcu5otu" path="res://scripts/enemy.gd" id="1_48hpc"]
+[ext_resource type="PackedScene" uid="uid://bkwab66br37x0" path="res://scenes/Background/killzone.tscn" id="2_8swre"]
+[ext_resource type="Texture2D" uid="uid://bgh65oip48ik7" path="res://assets/sprites/slime_green.png" id="3_0th86"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_tu8vy"]
+size = Vector2(10, 13)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_57w8f"]
+size = Vector2(10, 13)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_iifgy"]
+atlas = ExtResource("3_0th86")
+region = Rect2(0, 24, 24, 24)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_epg4t"]
+atlas = ExtResource("3_0th86")
+region = Rect2(24, 24, 24, 24)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_3yqyl"]
+atlas = ExtResource("3_0th86")
+region = Rect2(48, 24, 24, 24)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_wujgv"]
+atlas = ExtResource("3_0th86")
+region = Rect2(72, 24, 24, 24)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_57w8f"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_iifgy")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_epg4t")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_3yqyl")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_wujgv")
+}],
+"loop": 1,
+"name": &"default",
+"speed": 10.0
+}]
+
+[node name="Enemy" type="Node2D" unique_id=1164083753 groups=["enemies"]]
+z_index = 7
+script = ExtResource("1_48hpc")
+
+[node name="Hitbox" type="Area2D" parent="." unique_id=312454844 groups=["enemies"]]
+
+[node name="HitboxShape" type="CollisionShape2D" parent="Hitbox" unique_id=1495343188 groups=["enemies"]]
+position = Vector2(0, 5.5)
+shape = SubResource("RectangleShape2D_tu8vy")
+
+[node name="Killzone" parent="." unique_id=979388428 groups=["enemies"] instance=ExtResource("2_8swre")]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Killzone" unique_id=1606079152]
+visible = false
+position = Vector2(0, 5.5)
+shape = SubResource("RectangleShape2D_57w8f")
+
+[node name="RayCastLeft" type="RayCast2D" parent="." unique_id=688044440]
+position = Vector2(0, 5)
+target_position = Vector2(7, 0)
+
+[node name="RayCastRight" type="RayCast2D" parent="." unique_id=127636917]
+position = Vector2(1, 6)
+target_position = Vector2(-8, 0)
+
+[node name="enemy" type="AnimatedSprite2D" parent="." unique_id=1826801500 groups=["enemies"]]
+sprite_frames = SubResource("SpriteFrames_57w8f")
+autoplay = "default"
+frame = 1
+frame_progress = 0.98635995

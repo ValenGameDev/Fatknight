@@ -1,0 +1,77 @@
+[gd_scene format=3 uid="uid://db8qs6pnd4c6n"]
+
+[ext_resource type="Script" uid="uid://b582aye80tnv0" path="res://scripts/proyectile.gd" id="1_23gut"]
+[ext_resource type="Texture2D" uid="uid://ccbqw6ilwvx0o" path="res://assets/sprites/Shotbullet-sheet.png" id="2_bag1b"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_57w8f"]
+size = Vector2(8, 6)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_6ag23"]
+atlas = ExtResource("2_bag1b")
+region = Rect2(0, 0, 8, 8)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_6i6wh"]
+atlas = ExtResource("2_bag1b")
+region = Rect2(0, 8, 8, 8)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_4djv2"]
+atlas = ExtResource("2_bag1b")
+region = Rect2(0, 16, 8, 8)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_jq5c5"]
+atlas = ExtResource("2_bag1b")
+region = Rect2(0, 24, 8, 8)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_o28gb"]
+atlas = ExtResource("2_bag1b")
+region = Rect2(0, 32, 8, 8)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_lmjeo"]
+atlas = ExtResource("2_bag1b")
+region = Rect2(0, 40, 8, 8)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_g3chi"]
+atlas = ExtResource("2_bag1b")
+region = Rect2(0, 48, 8, 8)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_dky5h"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_6ag23")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_6i6wh")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_4djv2")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_jq5c5")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_o28gb")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_lmjeo")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_g3chi")
+}],
+"loop": 1,
+"name": &"default",
+"speed": 8.0
+}]
+
+[node name="Proyectile" type="Area2D" unique_id=1045896862]
+script = ExtResource("1_23gut")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=1210559673]
+position = Vector2(-61, -71)
+shape = SubResource("RectangleShape2D_57w8f")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=761012301]
+position = Vector2(-61, -71)
+sprite_frames = SubResource("SpriteFrames_dky5h")
+autoplay = "default"
+frame_progress = 0.24268101
