@@ -10,7 +10,7 @@ extends State
 
 
 func enter_state() -> void:
-	#Animacion
+	player.animated_sprite_2d.play("Run")
 	pass	
 	
 func physics_update(delta: float) -> void:
@@ -39,6 +39,16 @@ func physics_update(delta: float) -> void:
 	
 	var target_velocity := direction * speed
 	player.velocity.x = move_toward(player.velocity.x, target_velocity, acceleration * delta)
+	
+	var apunta_izquierda := player.get_global_mouse_position().x < player.global_position.x
+	var corre_izquierda := direction < 0.0
+
+	if apunta_izquierda != corre_izquierda:
+		player.animated_sprite_2d.flip_h = corre_izquierda
+		player.animated_sprite_2d.play("reverse_run")
+	else:
+		player.animated_sprite_2d.play("Run")
+	
 	player.move_and_slide()
 	print("entré!")
 	

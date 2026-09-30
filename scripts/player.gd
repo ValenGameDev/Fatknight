@@ -5,12 +5,15 @@ extends CharacterBody2D
 
 const RECOIL = 550.0
 const RECOIL_DECELERATION = 105.0
-# SIN USAR por ahora: buscar con Ctrl+Shift+F antes de borrarlas
+# SIN USAR por ahora
+
+const MAX_AMMO := 2
+var ammo := MAX_AMMO
+
 const RECOIL_JUMP = 80.0
 const RECOIL_UPWARD = 200.0
 
 var recoil_velocity := 0.0
-var can_move := true # ya no se usa acá: buscar con Ctrl+Shift+F antes de borrarla
 var last_move_direction: float = 0.0
 
 

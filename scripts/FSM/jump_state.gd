@@ -23,14 +23,15 @@ var _windup_timer := 0.0
 var _windup_duration := 0.0
 var _has_launched := false
 var _launch_velocity_x := 0.0
+var _jump_direction := 0.0
 
 	
 func enter_state() -> void:
 	var direction := Input.get_axis("move_left", "move_right")
-	#player.velocity.y = 
 	var speed_ratio: float = clamp(abs(player.velocity.x) / move_state.speed, 0.0, 1.0)
+	_jump_direction = direction
 	
-	
+		
 	if direction == 0.0:
 		_launch_velocity_x = 0.0
 	elif sign(direction) == sign(player.last_move_direction) or player.last_move_direction == 0.0:
@@ -44,12 +45,14 @@ func enter_state() -> void:
 	_windup_duration = lerpf(min_jump_delay, max_jump_delay, speed_ratio)
 	_windup_timer = 0.0
 	_has_launched = false
+	_update_animation()
 
 	#player.velocity.x = 0.0
 
 
 
 func physics_update(delta: float) -> void:
+	_update_animation()
 	if not _has_launched:
 		_windup_timer += delta
 		player.velocity.x = move_toward(
@@ -81,3 +84,16 @@ func _launch() -> void:
 	player.velocity.y = jump_velocity
 	player.velocity.x = _launch_velocity_x
 	# animación de despegue
+	
+func _update_animation() -> void:
+	var sprite: AnimatedSprite2D = player.animated_sprite_2d
+	if _jump_direction == 0.0:
+		sprite.play("idle")
+		return
+	var apunta_izquierda := player.get_global_mouse_position().x < player.global_position.x
+	var corre_izquierda := _jump_direction < 0.0
+	if apunta_izquierda != corre_izquierda:
+		sprite.flip_h = corre_izquierda
+		sprite.play("reverse_run")
+	else:
+		sprite.play("Run")

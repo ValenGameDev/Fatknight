@@ -8,7 +8,8 @@ extends State
 
 
 func enter_state() -> void:
-	pass #play animation
+	player.animated_sprite_2d.play("idle")
+	#play animation
 
 func physics_update(delta: float) -> void:
 	
