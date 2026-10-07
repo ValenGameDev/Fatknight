@@ -4,20 +4,20 @@ extends State
 @export var idle_state: State
 
 @export_group("Anticipación")
-@export var min_jump_delay: float = 0.05  # delay si viene casi parado
-@export var max_jump_delay: float = 0.25  # delay si viene a toda carrera
+@export var min_jump_delay: float = 0.03  # delay si viene casi parado
+@export var max_jump_delay: float = 0.18  # delay si viene a toda carrera
 
 @export_group("Parámetros de Salto")
-@export var jump_velocity: float = -350.0   # Impulso inicial (negativo = hacia arriba)
+@export var jump_velocity: float = -300.0   # Impulso inicial (negativo = hacia arriba)
 @export var rise_gravity_scale: float = 1.2 # Multiplicador de gravedad mientras sube
-@export var fall_gravity_scale: float = 2.0 # Multiplicador de gravedad mientras cae
+@export var fall_gravity_scale: float = 1.9 # Multiplicador de gravedad mientras cae
 @export_group("Salto largo")
 @export var min_horizontal_boost: float = 5.0
-@export var max_horizontal_boost: float = 115.0 # impulso horizontal extra al despegar
+@export var max_horizontal_boost: float = 120.0 # impulso horizontal extra al despegar
 
 @export_group("Movimiento en el aire")
 @export var air_speed: float = 2.0
-@export var air_acceleration: float = 20.0
+@export var air_acceleration: float = 25.0
 
 var _windup_timer := 0.0
 var _windup_duration := 0.0

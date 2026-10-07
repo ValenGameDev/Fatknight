@@ -3,7 +3,7 @@ extends CharacterBody2D
 @onready var animated_sprite_2d: AnimatedSprite2D = $AnimatedSprite2D
 @onready var recoil_state: State = $StateMachine/recoil
 
-const RECOIL = 550.0
+const RECOIL = 350.0
 const RECOIL_DECELERATION = 105.0
 # SIN USAR por ahora
 
@@ -11,7 +11,7 @@ const MAX_AMMO := 2
 var ammo := MAX_AMMO
 
 const RECOIL_JUMP = 80.0
-const RECOIL_UPWARD = 200.0
+const RECOIL_UPWARD = 250.0
 
 var recoil_velocity := 0.0
 var last_move_direction: float = 0.0

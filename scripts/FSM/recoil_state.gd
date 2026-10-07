@@ -4,17 +4,22 @@ extends State
 @export var move_state: State
 
 @export_group("Parámetros de Recoil")
-@export var duration: float = 1.5             # Segundos de stun (sin control del jugador)
-@export var x_deceleration: float = 600.0     # Qué tan rápido se frena en horizontal
+@export var duration: float = 1.0            # Segundos de stun (sin control del jugador)
+@export var x_deceleration: float = 550.0     # Qué tan rápido se frena en horizontal
 
 var _timer := 0.0
 
 
 func enter_state() -> void:
+	# Disparó en el aire: sin stun, devolvemos el control enseguida
+	if not player.is_on_floor():
+		_exit_to_next_state()
+		return
+
+	# Disparó en el suelo: stun normal
 	_timer = duration
-	# stop() + play() reinicia la animación desde el primer frame en cada disparo
 	player.animated_sprite_2d.stop()
-	player.animated_sprite_2d.play("recoil_")
+	player.animated_sprite_2d.play("recoilroll")
 
 
 func physics_update(delta: float) -> void:
@@ -34,3 +39,10 @@ func physics_update(delta: float) -> void:
 			switch_state.emit(move_state)
 		elif idle_state:
 			switch_state.emit(idle_state)
+			
+# Vuelve a idle o a move según el input
+func _exit_to_next_state() -> void:
+	if Input.get_axis("move_left", "move_right") != 0.0 and move_state:
+		switch_state.emit(move_state)
+	elif idle_state:
+		switch_state.emit(idle_state)
