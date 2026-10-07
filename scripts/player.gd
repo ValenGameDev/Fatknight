@@ -47,6 +47,7 @@ func _physics_process(_delta: float) -> void:
 
 	# Disparo
 	if Input.is_action_just_pressed("Shoot"):
+		$Camera2D.shot_kick()
 		var shoot_direction := mouse_direction.normalized()
 
 		# Si está en el piso y apunta hacia abajo, reducir el recoil
