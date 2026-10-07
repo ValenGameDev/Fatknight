@@ -80,6 +80,7 @@ func physics_update(delta: float) -> void:
 			
 
 func _launch() -> void:
+	print("jump_velocity: ", jump_velocity, " | rise_scale: ", rise_gravity_scale, " | gravedad: ", player.get_gravity())
 	_has_launched = true
 	player.velocity.y = jump_velocity
 	player.velocity.x = _launch_velocity_x
